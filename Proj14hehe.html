@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Manasviiii 💖</title> <!-- I love you -->
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
+    text-align: center;
+    touch-action: manipulation;
+}
+
+#startScreen, #finalScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background-color: #ff4da6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ff1a8c;
+}
+
+#gameArea {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+    animation: fall linear forwards;
+    text-shadow: 0 0 10px #ff66b3;
+
+}
+
+@keyframes fall {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(110vh); }
+}
+
+#score {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    color: #ff1a8c;
+}
+
+#finalScreen {
+    display: none;
+}
+
+#finalMessage {
+    max-width: 80%;
+    font-size: 20px;
+    color: #ff1a8c;
+}
+
+.plusOne {
+    position: absolute;
+    color: #ff1a8c;
+    font-weight: bold;
+    animation: floatUp 0.8s ease-out forwards;
+}
+
+@keyframes floatUp {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-40px); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+    <h1>Ready to steal my heart? 💕</h1>
+    <button onclick="startGame()">Start</button>
+</div>
+
+<div id="gameArea">
+    <div id="score">Hearts: 0</div>
+</div>
+
+<div id="finalScreen">
+    <h1>You caught my heart 💖</h1>
+    <p id="finalMessage">
+        Happy Valentine’s Day, Manasvi. 💕 <br><br>
+        Our first and many more to go valentines... ManASSvi AM I in love hehe
+        Thank you so much for being the best part of my day, the CUTEST part of my day. I can go on looking at you all day, you don't know you're beautiful. That's what makes yoou beautiful
+        "Mai dil ka raaz kehta hu, ki jab jab saasei leta hu, tera hi naam leta hu.. Ye tune kya kiya.." hayeee frfr manasvi ji 💕💕
+        Keep smiling, and making me smile. We'll meet whenever we're supposed to, but I heard somewhere "Our souls touched before our hands did" ufff...
+        I really wanna use those thighs as my ear muffs can't lie, so keep em warm bbg, or Ig that's my job ehereh 💖😉 We have to make so many memories together, what do I say.
+        Stay, we'll do our best. We gotta get 15 kids like , yyah, and we're gonna travel the world. We're gonna have a lot of fun, someday ham bhi Aarush gulliya jaisi zindagi jeeyenge, but we got each other so it's better than his one ehheeh..
+        From the "oh no gng" to "sit on me mommy" we've crossed seas frfr, lmao.. mwwahhh love you so much babyyy!!!!!!! AGHHHHHHHHHHH, you're so HOT like, actually sit on me plz Aghhh.. 
+
+        (Yes, you officially own my heart now.)
+    </p>
+    <!-- 🔁 You can add an <img src="your-image.jpg"> here if you want to show her picture -->
+</div>
+
+<script>
+let score = 0;
+let targetScore = 11; // 🔁 Change number if you want
+let gameInterval;
+
+function startGame() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameArea").style.display = "block";
+
+    gameInterval = setInterval(createHeart, 800);
+}
+
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+    heart.onclick = function() {
+        score++;
+        let plus = document.createElement("div");
+        plus.classList.add("plusOne");
+        plus.innerText = "+1 💕";
+        plus.style.left = heart.style.left;
+        plus.style.top = heart.getBoundingClientRect().top + "px";
+        document.body.appendChild(plus);
+
+        setTimeout(() => plus.remove(), 800);
+
+        document.getElementById("score").innerText = "Hearts: " + score;
+        heart.remove();
+
+        if (score >= targetScore) {
+            endGame();
+        }
+    };
+
+    document.getElementById("gameArea").appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+function confettiBurst() {
+    for (let i = 0; i < 50; i++) {
+        let confetti = document.createElement("div");
+        confetti.innerHTML = "💗";
+        confetti.style.position = "absolute";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = Math.random() * window.innerHeight + "px";
+        confetti.style.fontSize = "20px";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 2000);
+    }
+}
+
+
+function endGame() {
+    clearInterval(gameInterval);
+    document.getElementById("gameArea").style.display = "none";
+    document.getElementById("finalScreen").style.display = "flex";
+    confettiBurst();
+}
+</script>
+
+</body>
+</html>
